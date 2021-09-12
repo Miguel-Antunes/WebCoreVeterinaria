@@ -27,19 +27,19 @@ namespace ClinicaVeterinaria.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vacinas",
+                name: "Vacina",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    descricaoVacina = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    fabricanteVacina = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    fabricacaoVacina = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    validadeVacina = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    descricaoVacina = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    fabricanteVacina = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    fabricacaoVacina = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    validadeVacina = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vacinas", x => x.id);
+                    table.PrimaryKey("PK_Vacina", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,9 +88,9 @@ namespace ClinicaVeterinaria.Migrations
                         principalTable: "Animal",
                         principalColumn: "id");
                     table.ForeignKey(
-                        name: "FK_Procedimentos_Vacinas_descricaoVacinaid",
+                        name: "FK_Procedimentos_Vacina_descricaoVacinaid",
                         column: x => x.descricaoVacinaid,
-                        principalTable: "Vacinas",
+                        principalTable: "Vacina",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -132,7 +132,7 @@ namespace ClinicaVeterinaria.Migrations
                 name: "Animal");
 
             migrationBuilder.DropTable(
-                name: "Vacinas");
+                name: "Vacina");
 
             migrationBuilder.DropTable(
                 name: "Veterinarios");

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicaVeterinaria.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20210912220443_InitialCreate")]
+    [Migration("20210912232705_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,20 +122,24 @@ namespace ClinicaVeterinaria.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("descricaoVacina")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
-                    b.Property<string>("fabricacaoVacina")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("fabricacaoVacina")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("fabricanteVacina")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
-                    b.Property<string>("validadeVacina")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("validadeVacina")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("id");
 
-                    b.ToTable("Vacinas");
+                    b.ToTable("Vacina");
                 });
 
             modelBuilder.Entity("ClinicaVeterinaria.Models.Dominio.Veterinario", b =>
