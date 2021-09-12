@@ -7,7 +7,7 @@ namespace ClinicaVeterinaria.Models.Dominio
 {
     public class Procedimento
     {
-        public int idProcedimento { get; set; }
+        public int id { get; set; }
         public Animal nomeAnimal { get; set; }
         public Veterinario nomeVeterinario { get; set; }
         public Vacina descricaoVacina { get; set; }

@@ -7,7 +7,7 @@ namespace ClinicaVeterinaria.Models.Dominio
 {
     public class Veterinario
     {
-        public int idVeterinario { get; set; }
+        public int id { get; set; }
         public string nomeVeterinario { get; set; }
         public int cpfVeterinario { get; set; }
         public string nascimentoVeterinario { get; set; }
@@ -15,6 +15,7 @@ namespace ClinicaVeterinaria.Models.Dominio
         public string enderecoVeterinario { get; set; }
         public string cidadeVeterinario { get; set; }
         public string ufVeterinario { get; set; }
+        public  ICollection<Procedimento> Procedimentos { get; set; }
 
     }
 }

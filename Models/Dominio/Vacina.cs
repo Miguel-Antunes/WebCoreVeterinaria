@@ -7,11 +7,13 @@ namespace ClinicaVeterinaria.Models.Dominio
 {
     public class Vacina
     {
-        public int idVacina { get; set; }
+        public int id { get; set; }
         public string descricaoVacina { get; set; }
         public string fabricanteVacina { get; set; }
         public string fabricacaoVacina { get; set; }
         public string validadeVacina { get; set; }
+
+        public ICollection<Procedimento> Procedimentos { get; set; }
 
 
     }

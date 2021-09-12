@@ -7,7 +7,7 @@ namespace ClinicaVeterinaria.Models.Dominio
 {
     public class Animal
     {
-        public int idAnimal { get; set; }
+        public int id { get; set; }
         public string nomeProp { get; set; }
         public int cpfProp { get; set; }
         public string nascimentoProp { get; set; }
@@ -15,7 +15,7 @@ namespace ClinicaVeterinaria.Models.Dominio
         public string especieAnimal { get; set; }
         public string racaAnimal { get; set; }
         public int pesoAnimal { get; set; }
-        public ICollection<Procedimento> animal { get; set; }
+        public ICollection<Procedimento> Procedimentos { get; set; }
 
     }
 }
