@@ -1,0 +1,59 @@
+﻿@model ClinicaVeterinaria.Models.Dominio.Procedimento
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Procedimento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="dataProcedimento" class="control-label"></label>
+                <input asp-for="dataProcedimento" class="form-control" />
+                <span asp-validation-for="dataProcedimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="statusDor" class="control-label"></label>
+                <input asp-for="statusDor" class="form-control" />
+                <span asp-validation-for="statusDor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="statusFebre" class="control-label"></label>
+                <input asp-for="statusFebre" class="form-control" />
+                <span asp-validation-for="statusFebre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="statusEstado" class="control-label"></label>
+                <input asp-for="statusEstado" class="form-control" />
+                <span asp-validation-for="statusEstado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="queixa" class="control-label"></label>
+                <input asp-for="queixa" class="form-control" />
+                <span asp-validation-for="queixa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="procedimento" class="control-label"></label>
+                <input asp-for="procedimento" class="form-control" />
+                <span asp-validation-for="procedimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

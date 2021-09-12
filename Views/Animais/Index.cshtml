@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ClinicaVeterinaria.Models.Dominio.Animal>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Animais</h1>
+
+<p>
+    <a asp-action="Create">Adicionar novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeProp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cpfProp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nascimentoProp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeAnimal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.especieAnimal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.racaAnimal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pesoAnimal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeProp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpfProp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nascimentoProp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeAnimal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.especieAnimal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.racaAnimal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pesoAnimal)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
