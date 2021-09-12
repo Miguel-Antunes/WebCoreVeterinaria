@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClinicaVeterinaria.Migrations
 {
@@ -7,22 +8,22 @@ namespace ClinicaVeterinaria.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Animais",
+                name: "Animal",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nomeProp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    cpfProp = table.Column<int>(type: "int", nullable: false),
-                    nascimentoProp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    nomeAnimal = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    especieAnimal = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    racaAnimal = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    pesoAnimal = table.Column<int>(type: "int", nullable: false)
+                    nomeProp = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
+                    cpfProp = table.Column<int>(type: "Int", nullable: false),
+                    nascimentoProp = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    nomeAnimal = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    especieAnimal = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    racaAnimal = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    pesoAnimal = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Animais", x => x.id);
+                    table.PrimaryKey("PK_Animal", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,9 +67,11 @@ namespace ClinicaVeterinaria.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nomeAnimalid = table.Column<int>(type: "int", nullable: true),
+                    idAnimal = table.Column<int>(type: "int", nullable: false),
                     nomeVeterinarioid = table.Column<int>(type: "int", nullable: true),
+                    idVeterinario = table.Column<int>(type: "int", nullable: false),
                     descricaoVacinaid = table.Column<int>(type: "int", nullable: true),
+                    idVacina = table.Column<int>(type: "int", nullable: false),
                     dataProcedimento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     statusDor = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     statusFebre = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -80,11 +83,10 @@ namespace ClinicaVeterinaria.Migrations
                 {
                     table.PrimaryKey("PK_Procedimentos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Procedimentos_Animais_nomeAnimalid",
-                        column: x => x.nomeAnimalid,
-                        principalTable: "Animais",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_Procedimentos_Animal_idAnimal",
+                        column: x => x.idAnimal,
+                        principalTable: "Animal",
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_Procedimentos_Vacinas_descricaoVacinaid",
                         column: x => x.descricaoVacinaid,
@@ -100,14 +102,20 @@ namespace ClinicaVeterinaria.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Animal_cpfProp",
+                table: "Animal",
+                column: "cpfProp",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Procedimentos_descricaoVacinaid",
                 table: "Procedimentos",
                 column: "descricaoVacinaid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Procedimentos_nomeAnimalid",
+                name: "IX_Procedimentos_idAnimal",
                 table: "Procedimentos",
-                column: "nomeAnimalid");
+                column: "idAnimal");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Procedimentos_nomeVeterinarioid",
@@ -121,7 +129,7 @@ namespace ClinicaVeterinaria.Migrations
                 name: "Procedimentos");
 
             migrationBuilder.DropTable(
-                name: "Animais");
+                name: "Animal");
 
             migrationBuilder.DropTable(
                 name: "Vacinas");

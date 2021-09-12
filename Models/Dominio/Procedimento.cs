@@ -8,9 +8,17 @@ namespace ClinicaVeterinaria.Models.Dominio
     public class Procedimento
     {
         public int id { get; set; }
+       
         public Animal nomeAnimal { get; set; }
+        public int idAnimal { get; set; }
+
         public Veterinario nomeVeterinario { get; set; }
+        public int idVeterinario { get; set; }
+
         public Vacina descricaoVacina { get; set; }
+        public int idVacina { get; set; }
+
+
         public string dataProcedimento { get; set; }
         public string statusDor { get; set; }
         public string statusFebre { get; set; }

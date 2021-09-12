@@ -1,4 +1,5 @@
 ﻿using ClinicaVeterinaria.Models.Dominio;
+using ClinicaVeterinaria.Models.Mapeamento;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,17 @@ namespace ClinicaVeterinaria.Models
         public DbSet<Vacina> Vacinas { get; set; }
         public DbSet<Procedimento> Procedimentos { get; set; }
         public DbSet<Animal> Animais { get; set; }
+   
+    
+    
+         protected override void OnModelCreating(ModelBuilder builder)
+         {
+        
+            builder.ApplyConfiguration(new AnimalMap());
+     
+        }
+    
+    
     }
+    
 }

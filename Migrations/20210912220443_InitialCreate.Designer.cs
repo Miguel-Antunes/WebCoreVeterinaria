@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicaVeterinaria.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20210912192545_InitialCreate")]
+    [Migration("20210912220443_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,29 +29,38 @@ namespace ClinicaVeterinaria.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("cpfProp")
-                        .HasColumnType("int");
+                        .HasColumnType("Int");
 
                     b.Property<string>("especieAnimal")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("nascimentoProp")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("nascimentoProp")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("nomeAnimal")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("nomeProp")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
-                    b.Property<int>("pesoAnimal")
-                        .HasColumnType("int");
+                    b.Property<double>("pesoAnimal")
+                        .HasColumnType("float");
 
                     b.Property<string>("racaAnimal")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("id");
 
-                    b.ToTable("Animais");
+                    b.HasIndex("cpfProp")
+                        .IsUnique();
+
+                    b.ToTable("Animal");
                 });
 
             modelBuilder.Entity("ClinicaVeterinaria.Models.Dominio.Procedimento", b =>
@@ -67,7 +76,13 @@ namespace ClinicaVeterinaria.Migrations
                     b.Property<int?>("descricaoVacinaid")
                         .HasColumnType("int");
 
-                    b.Property<int?>("nomeAnimalid")
+                    b.Property<int>("idAnimal")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idVacina")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idVeterinario")
                         .HasColumnType("int");
 
                     b.Property<int?>("nomeVeterinarioid")
@@ -92,7 +107,7 @@ namespace ClinicaVeterinaria.Migrations
 
                     b.HasIndex("descricaoVacinaid");
 
-                    b.HasIndex("nomeAnimalid");
+                    b.HasIndex("idAnimal");
 
                     b.HasIndex("nomeVeterinarioid");
 
@@ -164,7 +179,9 @@ namespace ClinicaVeterinaria.Migrations
 
                     b.HasOne("ClinicaVeterinaria.Models.Dominio.Animal", "nomeAnimal")
                         .WithMany("Procedimentos")
-                        .HasForeignKey("nomeAnimalid");
+                        .HasForeignKey("idAnimal")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("ClinicaVeterinaria.Models.Dominio.Veterinario", "nomeVeterinario")
                         .WithMany("Procedimentos")
