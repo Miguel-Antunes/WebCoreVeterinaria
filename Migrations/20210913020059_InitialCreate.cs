@@ -72,12 +72,12 @@ namespace ClinicaVeterinaria.Migrations
                     idVeterinario = table.Column<int>(type: "int", nullable: false),
                     descricaoVacinaid = table.Column<int>(type: "int", nullable: true),
                     idVacina = table.Column<int>(type: "int", nullable: false),
-                    dataProcedimento = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    statusDor = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    statusFebre = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    statusEstado = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    queixa = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    procedimento = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    dataProcedimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    statusDor = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    statusFebre = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    statusEstado = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    queixa = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    procedimento = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: false)
                 },
                 constraints: table =>
                 {

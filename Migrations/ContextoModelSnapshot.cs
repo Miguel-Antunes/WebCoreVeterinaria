@@ -68,8 +68,8 @@ namespace ClinicaVeterinaria.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("dataProcedimento")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("dataProcedimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("descricaoVacinaid")
                         .HasColumnType("int");
@@ -87,19 +87,29 @@ namespace ClinicaVeterinaria.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("procedimento")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
 
                     b.Property<string>("queixa")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("statusDor")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("statusEstado")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("statusFebre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("id");
 
