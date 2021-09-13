@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicaVeterinaria.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20210912232705_InitialCreate")]
+    [Migration("20210913000804_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,25 +150,32 @@ namespace ClinicaVeterinaria.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("cidadeVeterinario")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("cpfVeterinario")
                         .HasColumnType("int");
 
                     b.Property<string>("enderecoVeterinario")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
-                    b.Property<string>("nascimentoVeterinario")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("nascimentoVeterinario")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("nomeVeterinario")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("telefoneVeterinario")
                         .HasColumnType("int");
 
                     b.Property<string>("ufVeterinario")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("id");
 

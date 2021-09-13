@@ -25,7 +25,7 @@ namespace ClinicaVeterinaria.Models.Mapeamento
 
             builder.HasMany(p => p.Procedimentos).WithOne(p => p.descricaoVacina).HasForeignKey(p => p.idVacina).OnDelete(DeleteBehavior.NoAction);
 
-            builder.ToTable("Animal");
+            builder.ToTable("Vacina");
         }
     }
 }

@@ -48,13 +48,13 @@ namespace ClinicaVeterinaria.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nomeVeterinario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    nomeVeterinario = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     cpfVeterinario = table.Column<int>(type: "int", nullable: false),
-                    nascimentoVeterinario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    nascimentoVeterinario = table.Column<DateTime>(type: "datetime2", nullable: false),
                     telefoneVeterinario = table.Column<int>(type: "int", nullable: false),
-                    enderecoVeterinario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    cidadeVeterinario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ufVeterinario = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    enderecoVeterinario = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
+                    cidadeVeterinario = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    ufVeterinario = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
